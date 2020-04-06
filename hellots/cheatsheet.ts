@@ -24,7 +24,6 @@ const rest = (a: number, ...num: number[]): number => {
         return total + num
     }, a)
 }
-
 // console.log(add(1), sub(4, 2), rest(20, 20, 30, 40))
 
 // union type
@@ -72,6 +71,51 @@ class Coder extends Person {
 }
 // let aCoder: Person = new Coder("coder") // ok
 // let bCoder: Coder = new Person("sb") // error
-let cCoder: Coder = new Coder("coder")
-cCoder.setLastName("ho")
-cCoder.reportLastName()
+// let cCoder: Coder = new Coder("coder")
+// cCoder.setLastName("ho")
+// cCoder.reportLastName()
+
+
+enum DaysOfTheWeek {
+    SUN = 100, MON, TUE, WED, THU, FRI, SAT
+}
+let day: DaysOfTheWeek;
+day = DaysOfTheWeek.MON;
+// console.log(day) // 101
+
+
+interface Named {
+    name: string
+    print(words: string): void
+}
+const sayName = (o: Named) => {
+    console.log(o.name)
+    o.print(o.name)
+}
+class P {
+    name: string
+    print() {}
+}
+var p:Named = new P()
+p.name = 'sb'
+// sayName(p)
+
+interface PrintCallback {
+    (success: boolean): void
+}
+let printCallback: PrintCallback;
+printCallback = (suc: boolean) => { // 签名必须一致
+
+}
+
+
+type Name = string
+
+
+let x: any = "hi there"
+let ss = (<string>x).substring(0, 4);
+// console.log(ss)
+function getLength(sth: string | number): number {
+    return (<string>sth).length
+}
+console.log(getLength("223"), getLength(123))
