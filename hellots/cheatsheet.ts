@@ -116,6 +116,45 @@ let x: any = "hi there"
 let ss = (<string>x).substring(0, 4);
 // console.log(ss)
 function getLength(sth: string | number): number {
-    return (<string>sth).length
+    if ((<string>sth).length) {
+        return (<string>sth).length
+    }
+    return sth.toString().length
 }
-console.log(getLength("223"), getLength(123))
+// console.log(getLength("223"), getLength(1234))
+interface CC {
+    name: string
+    age: number
+}
+let ac = {} as CC
+ac.name = 'sb'
+ac.age = 29
+// ac.firstName = "123" // Property 'firstName' does not exist on type '{}'
+let bc = <CC>{
+    name: 'ho',
+    age: 29
+}
+
+class Component {
+    private width: number;
+    private height: number;
+    constructor(width: number, height: number) {
+        this.width = width;
+        this.height = height;
+    }
+    display(): void {
+        console.log(this.height);
+    }
+}
+interface Widget extends Component {
+    hide(): void;
+}
+class Button extends Component implements Widget {
+    hide(): void {
+        console.log('hiding');
+    }
+}
+let w: Widget = new Button(1, 2);
+// console.log(w);
+// w.display();
+// w.hide();
